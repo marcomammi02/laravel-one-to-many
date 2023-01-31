@@ -13,7 +13,7 @@
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Description</th>
+                <th scope="col">Slug</th>
                 <th scope="col">Action</th>
             </thead>
             <tbody>
@@ -21,10 +21,10 @@
                     <tr>
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->name }}</td>
-                        <td>{{ $category->description }}</td>
+                        <td>{{ $category->slug }}</td>
+                        <td><a href="{{ route('admin.categories.show', ['category' => $category]) }}" class="btn btn-primary">Visit</a></td>
+                        <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}" class="btn btn-warning">Edit</a></td>
                         <td>
-                            <a href="{{ route('admin.categories.show', ['category' => $category]) }}" class="btn btn-primary">Visit</a>
-                            <a href="{{ route('admin.categories.edit', ['category' => $category]) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="post">
                                 @method('DELETE')
                                 @csrf
