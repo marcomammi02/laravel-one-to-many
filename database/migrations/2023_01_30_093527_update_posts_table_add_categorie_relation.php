@@ -13,15 +13,15 @@ class UpdatePostsTableAddCategorieRelation extends Migration
      */
     public function up()
     {
-        // Schema::table('posts', function (Blueprint $table) {
-        //     // creare la colonna della chiave esterna
-        //     $table->unsignedBigInteger('category_id')->after('id')->default(1);
+        Schema::table('posts', function (Blueprint $table) {
+            // creare la colonna della chiave esterna
+            $table->unsignedBigInteger('category_id')->after('id')->default(1);
 
-        //     // creare la relazione tra le tabelle
-        //     $table->foreign('category_id')
-        //         ->references('id')
-        //         ->on('categories');
-        // });
+            // creare la relazione tra le tabelle
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
+        });
     }
 
     /**
@@ -31,12 +31,12 @@ class UpdatePostsTableAddCategorieRelation extends Migration
      */
     public function down()
     {
-        // Schema::table('posts', function (Blueprint $table) {
-        //     // eliminare la relazione
-        //     $table->dropForeign(['category_id']);
+        Schema::table('posts', function (Blueprint $table) {
+            // eliminare la relazione
+            $table->dropForeign(['category_id']);
 
-        //     // elimanare la colonna
-        //     $table->dropColumn('category_id');
-        // });
+            // elimanare la colonna
+            $table->dropColumn('category_id');
+        });
     }
 }

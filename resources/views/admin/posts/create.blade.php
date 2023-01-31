@@ -30,6 +30,26 @@
                     @enderror
                 </div>
             </div>
+
+            {{-- Category selector --}}
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category:</label>
+                <select class="form-select @error('category_id') is-invalid @enderror" id="category_id" name="category_id">
+                  @foreach ($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  @endforeach
+                </select>
+                <div class="invalid-feedback">
+                    @error('category_id')
+                    <ul>
+                        @foreach ($errors->get('category_id') as $error)
+                            <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                    @enderror
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="image" class="form-label">Image URL:</label>
                 <input type="url" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{ old('image') }}">
@@ -43,6 +63,8 @@
                     @enderror
                 </div>
             </div>
+
+            {{-- Image uploader --}}
             <div class="mb-3">
                 <label for="uploaded_img" class="form-label">Image:</label>
                 <input class="form-control @error('uploaded_img') is-invalid @enderror" type="file" id="uploaded_img" name="uploaded_img" multiple>
@@ -56,6 +78,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="mb-3">
                 <label for="content" class="form-label">Content:</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">{{ old('content') }}</textarea>

@@ -30,6 +30,7 @@ Route::middleware('auth')
     ->group(function() {
         Route::get('/', 'PageController@index')->name('dashboard');
         Route::resource('posts', 'PostController');        // Crud Routs
+        Route::resource('category', 'CategoryController');        // Crud Routs
 });
 
 

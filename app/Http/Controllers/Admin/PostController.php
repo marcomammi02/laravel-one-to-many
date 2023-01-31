@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -17,8 +18,9 @@ class PostController extends Controller
             'max:100',
         ],
         'title'         => 'required|string|max:100',
+        'category_id'   => 'required|integer|exists:categories,id',
         'image'         => 'string|max:100',
-        'uploaded_img'   => 'image|max:1024',
+        'uploaded_img'  => 'image|max:1024',
         'content'       => 'string',
         'excerpt'       => 'string',
     ];
@@ -43,7 +45,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all('id', 'name');
+
+        return view('admin.posts.create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -60,7 +66,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $img_path = Storage::put('uploads', $data['uploaded_img']);
+        $img_path = isset($data['uploaded_img']) ? Storage::put('uploads', $data['uploaded_img']) : null;
 
         // salvare i dati nel db
         $post = new Post;

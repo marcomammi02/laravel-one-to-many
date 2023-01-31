@@ -57,7 +57,11 @@
                     @enderror
                 </div>
                 <p class="old-img-preview-title">Old image:</p>
-                <img class="old-img-preview" src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }} image">
+                @if ($post->uploaded_img)
+                    <img class="old-img-preview" src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }} img">
+                @else
+                    <img class="old-img-preview" src="{{ $post->image }}" alt="{{ $post->title }} image">
+                @endif
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content:</label>

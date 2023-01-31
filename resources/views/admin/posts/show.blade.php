@@ -3,8 +3,9 @@
 @section('content')
     <div class="container text-center">
         <h2>{{ ucfirst($post->title) }}</h2>
+        <p>Category: {{ $post->category->name }}</p>
         @if ($post->uploaded_img)
-            <img src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }} image">
+            <img src="{{ asset('storage/' . $post->uploaded_img) }}" alt="{{ $post->title }} img">
         @else
             <img src="{{ $post->image }}" alt="{{ $post->title }} image">
         @endif
